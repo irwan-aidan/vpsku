@@ -1,16 +1,23 @@
 #!/bin/bash
-red='\e[1;31m'
-green='\e[0;32m'
-NC='\e[0m'
-MYIP=$(wget -qO- icanhazip.com);
-echo "Script By geo"
+reset
+
+read -p "bug : " bughost
+IP=$(wget -qO- icanhazip.com);
+sleep 1
+echo Ping Host
+echo Cek Hak Akses...
+sleep 0.5
+echo Permission Accepted
+clear
+sleep 0.5
 clear
 apt install jq curl -y
-DOMAIN=Fast-VPN.online
-sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
-SUB_DOMAIN=${sub}.Fast-VPN.online
-CF_ID=ikelirawanhosting@gmail.com
-CF_KEY=54d0c70d2003c6d6070adaa0049dc6e8ef598
+DOMAIN=aidan.my
+Bug=$bughost
+sub=$vpn
+SUB_DOMAIN=${Bug}.${sub}.aidan.my
+CF_ID=irwan@aidan.my
+CF_KEY=CF_KEY=6779dc3c10a378ea902334cc205b5181
 set -euo pipefail
 IP=$(wget -qO- icanhazip.com);
 echo "Updating DNS for ${SUB_DOMAIN}..."
@@ -23,7 +30,8 @@ RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" | jq -r .result[0].id)
-
+sleep 0.2
+clear
 if [[ "${#RECORD}" -le 10 ]]; then
      RECORD=$(curl -sLX POST "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records" \
      -H "X-Auth-Email: ${CF_ID}" \
