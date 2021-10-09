@@ -1,6 +1,9 @@
 #!/bin/bash
 reset
-
+echo -e "\e[1;33m==============================================================="
+echo -e "\e[1;36m                    AutoScriptVPS by  Badboy                   "
+echo -e "\e[1;36m                           Redfox VPN                          "
+echo -e "\e[1;33m==============================================================="
 read -p "bug : " bughost
 IP=$(wget -qO- icanhazip.com);
 sleep 1
@@ -14,10 +17,10 @@ clear
 apt install jq curl -y
 DOMAIN=aidan.my
 Bug=$bughost
-sub=$vpn
-SUB_DOMAIN=${Bug}.${sub}.aidan.my
+sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
+SUB_DOMAIN=${Bug}.vpn.aidan.my
 CF_ID=irwan@aidan.my
-CF_KEY=CF_KEY=6779dc3c10a378ea902334cc205b5181
+CF_KEY=6779dc3c10a378ea902334cc205b5181
 set -euo pipefail
 IP=$(wget -qO- icanhazip.com);
 echo "Updating DNS for ${SUB_DOMAIN}..."
